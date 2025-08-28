@@ -3,7 +3,14 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Zap } from "lucide-react";
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
+import Link from "next/link";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,12 +20,12 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <Link href={"/"} className="flex items-center gap-2">
             <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-lg">
               <Zap className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold text-foreground">BudgetAI</span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
@@ -40,19 +47,22 @@ export function Navbar() {
             >
               Pricing
             </a>
-            {/* <Button variant="outline" size="sm">
-              Sign In
-            </Button>
-            <Button size="sm" className="bg-accent hover:bg-accent/90">
-              Get Started
-            </Button> */}
             <SignedOut>
-              <SignInButton />
-              <SignUpButton>
-                <button className="bg-[#6c47ff] text-ceramic-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-                  Sign Up
-                </button>
-              </SignUpButton>
+              <div className="flex gap-3">
+                {/* Sign In Button */}
+                <SignInButton>
+                  <Button variant="outline" size="sm">
+                    Sign In
+                  </Button>
+                </SignInButton>
+
+                {/* Sign Up Button */}
+                <SignUpButton>
+                  <Button size="sm" className="bg-accent hover:bg-accent/90">
+                    Sign Up
+                  </Button>
+                </SignUpButton>
+              </div>
             </SignedOut>
             <SignedIn>
               <UserButton />

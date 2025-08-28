@@ -16,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
+    <ClerkProvider signInUrl="sign-in" signUpUrl="sign-up">
+      <html className="scroll-smooth" lang="en">
         <body className={`${inter.className} antialiased`}>
           {/* header */}
           {children}
