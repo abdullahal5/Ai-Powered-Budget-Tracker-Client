@@ -9,6 +9,7 @@ export default function Home() {
     <div>
       <Navbar />
       <HeroSection />
+      {/* <AiHighlight /> */}
       <FeaturesSection />
       <HowItWorksSection />
       <Footer />
