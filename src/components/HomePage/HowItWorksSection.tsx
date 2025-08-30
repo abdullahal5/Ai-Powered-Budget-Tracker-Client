@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { steps } from "@/data/howItWorks";
+import { steps } from "../../data/howItWorks";
 
 export function HowItWorksSection() {
   return (

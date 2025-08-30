@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { features } from "@/data/features";
+import { features } from "../../data/features";
 
 export function FeaturesSection() {
   return (
