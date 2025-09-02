@@ -1,10 +1,12 @@
-
 import { Plus, AlertCircle } from "lucide-react";
 import { useAccounts } from "../../actions/account";
 import { Card, CardContent } from "../../components/ui/card";
 import CreateAccountDrawer from "../../components/create-account-drawer";
 import { AccountCard } from "../../components/dashboard/AccountCard";
 import { useToken } from "../../lib/useClerkToken";
+import { useMyCurrentBudget } from "../../actions/budget";
+import BudgetProgress from "../../components/dashboard/BudgetProgress";
+import type { TBudget } from "../../types";
 
 const Dashboard = () => {
   const { token, isLoading: isTokenLoading, error: tokenError } = useToken();
@@ -16,7 +18,14 @@ const Dashboard = () => {
     enabled: !!token,
   });
 
-  const isLoading = isTokenLoading || isAccountsLoading;
+  const defaultAccount = accounts?.data?.find((account) => account.isDefault);
+
+  const { data: currentBudget, isLoading: isBudgetLoading } =
+    useMyCurrentBudget(token as string, defaultAccount?.id || "", {
+      enabled: !!defaultAccount?.id && !!token,
+    });
+
+  const isLoading = isTokenLoading || isAccountsLoading || isBudgetLoading;
   const hasError = tokenError || accountsError;
 
   if (isLoading) {
@@ -69,6 +78,11 @@ const Dashboard = () => {
     );
   }
 
+  let budgetData = null;
+  if (defaultAccount) {
+    budgetData = currentBudget?.data;
+  }
+
   return (
     <div className="min-h-screen">
       <div className="container mx-auto px-6 py-8">
@@ -81,7 +95,15 @@ const Dashboard = () => {
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* budget progress */}
+        {defaultAccount && (
+          <BudgetProgress
+            initialBudget={budgetData?.budget as unknown as TBudget}
+            currentExpenses={budgetData?.currentExpenses || 0}
+          />
+        )}
+
+        <div className="grid pt-10 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {accounts?.data && (
             <CreateAccountDrawer>
               <Card className="group hover:shadow-lg transition-all duration-200 cursor-pointer border-2 border-dashed border-blue-200 bg-blue-50/50 hover:bg-blue-50 hover:border-blue-300">

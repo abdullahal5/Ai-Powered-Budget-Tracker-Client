@@ -25,6 +25,7 @@ import type { TAccount, TTransaction } from "../../types";
 import { useToken } from "../../lib/useClerkToken";
 import { useAccountsWithTransactions } from "../../actions/account";
 import { useParams } from "react-router-dom";
+import AccountChart from "../../components/dashboard/AccountChart";
 
 const AccountDetails = () => {
   const { token } = useToken();
@@ -71,11 +72,12 @@ const AccountDetails = () => {
   // Calculate transaction statistics
   const totalIncome = _transactions
     .filter((t) => t.type === "INCOME")
-    .reduce((sum, t) => sum + t.amount, 0);
+    .reduce((sum, t) => sum + Number(t.amount), 0);
 
   const totalExpenses = _transactions
     .filter((t) => t.type === "EXPENSE")
-    .reduce((sum, t) => sum + t.amount, 0);
+    .reduce((sum, t) => sum + Number(t.amount), 0);
+
 
   const getAccountTypeIcon = (type: string) => {
     return type === "SAVINGS" ? (
@@ -207,6 +209,11 @@ const AccountDetails = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Chart Section */}
+        {_transactions.length > 0 && (
+          <AccountChart transactions={_transactions} />
+        )}
 
         {/* Recent Transactions */}
         <Card>
