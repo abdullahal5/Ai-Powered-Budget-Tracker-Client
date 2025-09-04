@@ -3,6 +3,7 @@ import MainLayout from "../components/layout/MainLayout";
 import HomePage from "../pages/HomePage";
 import Dashboard from "../pages/dashboard/Dashboard";
 import AccountDetails from "../pages/dashboard/Account";
+import CreateTransaction from "../pages/dashboard/CreateTransaction";
 
 const router = createBrowserRouter([
   {
@@ -18,8 +19,12 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "/account/:id",
+        path: "/dashboard/account/:id",
         element: <AccountDetails />,
+      },
+      {
+        path: "/dashboard/transaction/create",
+        element: <CreateTransaction />,
       },
     ],
   },

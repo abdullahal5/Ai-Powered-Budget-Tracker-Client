@@ -24,7 +24,7 @@ import TransactionTable from "../../components/dashboard/Transaction-table";
 import type { TAccount, TTransaction } from "../../types";
 import { useToken } from "../../lib/useClerkToken";
 import { useAccountsWithTransactions } from "../../actions/account";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AccountChart from "../../components/dashboard/AccountChart";
 
 const AccountDetails = () => {
@@ -77,7 +77,6 @@ const AccountDetails = () => {
   const totalExpenses = _transactions
     .filter((t) => t.type === "EXPENSE")
     .reduce((sum, t) => sum + Number(t.amount), 0);
-
 
   const getAccountTypeIcon = (type: string) => {
     return type === "SAVINGS" ? (
@@ -132,10 +131,15 @@ const AccountDetails = () => {
                 <Download className="h-4 w-4 mr-2" />
                 Export
               </Button>
-              <Button size="sm">
-                <Plus className="h-4 w-4 mr-2" />
-                Add Transaction
-              </Button>
+              <Link
+                className="cursor-pointer"
+                to={`/dashboard/transaction/create`}
+              >
+                <Button className="cursor-pointer" size="sm">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add Transaction
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

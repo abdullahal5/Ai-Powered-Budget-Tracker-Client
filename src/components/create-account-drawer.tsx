@@ -122,19 +122,19 @@ const CreateAccountDrawer = ({ children }: { children: ReactNode }) => {
                           defaultValue={field.value}
                         >
                           <FormControl>
-                            <SelectTrigger className="h-11 border border-neutral-300">
+                            <SelectTrigger className="h-11 w-full border border-neutral-300 cursor-pointer">
                               <SelectValue placeholder="Select account type" />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
                             <SelectItem value="CURRENT">
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-2 cursor-pointer">
                                 <CreditCard className="h-4 w-4" />
                                 Current Account
                               </div>
                             </SelectItem>
-                            <SelectItem value="SAVINGS">
-                              <div className="flex items-center gap-2">
+                            <SelectItem className="w-full" value="SAVINGS">
+                              <div className="flex items-center gap-2 cursor-pointer">
                                 <DollarSign className="h-4 w-4" />
                                 Savings Account
                               </div>

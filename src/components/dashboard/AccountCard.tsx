@@ -63,7 +63,7 @@ export function AccountCard({ account }: { account: TAccount }) {
 
       <CardHeader className="flex flex-row items-start justify-between space-y-0 relative z-10">
         <Link
-          to={`/account/${id}`}
+          to={`/dashboard/account/${id}`}
           className="flex items-center space-x-3 flex-1"
         >
           <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
