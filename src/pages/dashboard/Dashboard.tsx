@@ -107,8 +107,8 @@ const Dashboard = () => {
           {accounts?.data && (
             <CreateAccountDrawer>
               <Card className="group hover:shadow-lg transition-all duration-200 cursor-pointer border-2 border-dashed border-blue-200 bg-blue-50/50 hover:bg-blue-50 hover:border-blue-300">
-                <CardContent className="flex flex-col items-center justify-center text-blue-600 h-48 space-y-3">
-                  <div className="transform group-hover:scale-110 transition-transform duration-200">
+                <CardContent className="flex flex-col items-center justify-center text-blue-600 h-full space-y-3">
+                  <div className="transform group-hover:scale-110 bg-blue-100 rounded-xl p-2 transition-transform duration-200">
                     <Plus className="h-10 w-10" />
                   </div>
                   <div className="text-center space-y-1">

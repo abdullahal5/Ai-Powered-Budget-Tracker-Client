@@ -95,16 +95,11 @@ export function AccountCard({ account }: { account: TAccount }) {
       </CardHeader>
 
       <Link to={`/account/${id}`} className="block relative z-10">
-        <CardContent className="pb-">
+        <CardContent>
           <div className="space-y-2">
             <div className="text-3xl font-bold tracking-tight group-hover:text-primary transition-colors">
               {formatBalance(balance)}
             </div>
-            {Number.parseFloat(balance) >= 1000 && (
-              <p className="text-sm text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
-                ${Number.parseFloat(balance).toLocaleString()}
-              </p>
-            )}
           </div>
         </CardContent>
 

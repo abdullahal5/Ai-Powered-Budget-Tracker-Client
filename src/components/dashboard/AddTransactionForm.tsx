@@ -45,6 +45,7 @@ import { useToken } from "../../lib/useClerkToken";
 import { useCreateTransaction } from "../../actions/transactions";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import ReceiptScanner from "./ReceiptScanner";
 
 type TransactionFormValues = z.infer<typeof transactionSchema>;
 
@@ -105,6 +106,9 @@ export function AddTransactionForm({
   return (
     <div>
       <Form {...form}>
+        <div className="pb-6">
+          <ReceiptScanner />
+        </div>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {/* Transaction Type - Enhanced with visual indicators */}
           <FormField
